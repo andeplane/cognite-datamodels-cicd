@@ -6,6 +6,9 @@ on:
 jobs:
   deployt-transformations:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cdfProjects: [andershaf]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -22,7 +25,7 @@ jobs:
             COGNITE_CLIENT_SECRET: ${{ secrets.CLI_CLIENT_SECRET }}
             CLI_CLIENT_ID: ${{ env.CLI_CLIENT_ID }}
             CLI_CLIENT_SECRET: ${{ secrets.CLI_CLIENT_SECRET }}
-            CLI_PROJECT: ${{ env.CLI_PROJECT }}
+            CLI_PROJECT: ${{ matrix.cdfProjects }}
             VERSION: ${{ env.VERSION }}
         with:
             # Credentials used for deployment
@@ -30,7 +33,7 @@ jobs:
             client-id: ${{ env.CLI_CLIENT_ID }}
             client-secret: ${{ secrets.CLI_CLIENT_SECRET }}
             token-url: https://login.microsoftonline.com/5409fe5e-39ad-4448-90ad-6688455011bf/oauth2/v2.0/token
-            cdf-project-name: andershaf
+            cdf-project-name: ${{ matrix.cdfProjects }}
             # If you need to provide multiple scopes, the format: "scope1 scope2 scope3"
             scopes: https://api.cognitedata.com/.default
             # audience: "" # Optional
