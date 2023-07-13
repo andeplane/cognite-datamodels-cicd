@@ -1,0 +1,30 @@
+name: Publish datamodel on merge to main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish-dm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        # We will add the next steps here
+      - name: Install
+        run: |
+            npm install --global @cognite/cdf-cli
+      - name: Signin
+        run: |
+          cdf signin $CLI_PROJECT --tenant=$CLI_TENANT --cluster=$CLI_CLUSTER --client_id=$CLI_CLIENT_ID --client_secret=${{ secrets.CLI_CLIENT_SECRET }}
+      - name: Publish changes
+        run: |
+          cdf data-models publish --file=$file --external-id=$external_id --space=$space --version=$version
+        env:
+          file: './datamodel.graphql'
+          external_id: 'MovieDMCICD'
+          space: 'MovieDMCICD'
+          version: '1'
+          
