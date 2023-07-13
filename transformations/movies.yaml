@@ -29,9 +29,9 @@ ignoreNullFields: true
 shared: true
 action: upsert
 authentication:
-  clientId: $CLI_CLIENT_ID
-  clientSecret: ${{ secrets.CLI_CLIENT_SECRET }}
-  tokenUrl: https://login.microsoftonline.com/$CLI_TENANT/oauth2/v2.0/token
-  cdfProjectName: $CLI_PROJECT
+  clientId: ${CLI_CLIENT_ID}
+  clientSecret: ${CLI_CLIENT_SECRET}
+  tokenUrl: https://login.microsoftonline.com/5409fe5e-39ad-4448-90ad-6688455011bf/oauth2/v2.0/token
+  cdfProjectName: ${CLI_PROJECT}
   scopes:
-   - https://$CLI_CLUSTER.cognitedata.com/.default
+   - https://api.cognitedata.com/.default
