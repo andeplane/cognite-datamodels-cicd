@@ -29,7 +29,7 @@ jobs:
             path: transformations  # Transformation manifest folder, relative to GITHUB_WORKSPACE
             client-id: ${{ env.CLI_CLIENT_ID }}
             client-secret: ${{ secrets.CLI_CLIENT_SECRET }}
-            token-url: https://login.microsoftonline.com/${{env.CLI_TENANT}}/oauth2/v2.0/token
+            token-url: https://login.microsoftonline.com/5409fe5e-39ad-4448-90ad-6688455011bf/oauth2/v2.0/token
             cdf-project-name: andershaf
             # If you need to provide multiple scopes, the format: "scope1 scope2 scope3"
             scopes: https://api.cognitedata.com/.default
