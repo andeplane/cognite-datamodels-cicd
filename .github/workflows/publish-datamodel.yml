@@ -18,7 +18,7 @@ jobs:
             npm install --global @cognite/cdf-cli
       - name: Signin
         run: |
-          cdf signin ${{ env.CLI_PROJECT }} --tenant=${{ env.CLI_TENANT }} --cluster=${{ env.CLI_CLUSTER }} --client-id=${{ env.CLI_CLIENT_ID }} --client-secret=${{ secrets.CLI_CLIENT_SECRET }}
+          cdf signin $CLI_PROJECT --tenant=$CLI_TENANT --cluster=$CLI_CLUSTER --client-id=$CLI_CLIENT_ID --client-secret=${{ secrets.CLI_CLIENT_SECRET }}
         env:
           CLI_PROJECT: ${{ env.CLI_PROJECT }}
           CLI_TENANT: ${{ env.CLI_TENANT }}
