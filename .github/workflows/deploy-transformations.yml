@@ -23,7 +23,7 @@ jobs:
             client-id: $CLI_CLIENT_ID
             client-secret: ${{ secrets.CLI_CLIENT_SECRET }}
             token-url: https://login.microsoftonline.com/$CLI_TENANT/oauth2/v2.0/token
-            cdf-project-name: $CLI_PROJECT
+            cdf-project-name: andershaf
             # If you need to provide multiple scopes, the format: "scope1 scope2 scope3"
-            scopes: https://$CLI_CLUSTER.cognitedata.com/.default
+            scopes: https://api.cognitedata.com/.default
             # audience: "" # Optional
