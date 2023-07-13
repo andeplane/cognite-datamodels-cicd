@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-      - name: Load file content to environment variable
+      - name: Load version
         run: |
           VERSION=$(cat VERSION)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -20,6 +20,9 @@ jobs:
             # as referenced in your manifests:
             COGNITE_CLIENT_ID: ${{ env.CLI_CLIENT_ID }}
             COGNITE_CLIENT_SECRET: ${{ secrets.CLI_CLIENT_SECRET }}
+            CLI_CLIENT_ID: ${{ env.CLI_CLIENT_ID }}
+            CLI_CLIENT_SECRET: ${{ secrets.CLI_CLIENT_SECRET }}
+            CLI_PROJECT: ${{ env.CLI_PROJECT }}
             VERSION: ${{ env.VERSION }}
         with:
             # Credentials used for deployment
