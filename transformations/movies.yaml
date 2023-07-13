@@ -21,7 +21,7 @@ destination:
   dataModel:
     space: MoviesDMCICD
     externalId: MoviesDMCICD
-    version: "1"
+    version: ${VERSION}
     destinationType: Movie
   instanceSpace: MoviesDMCICD
   type: instances

@@ -9,20 +9,24 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-
+      - name: Load file content to environment variable
+        run: |
+          VERSION=$(cat VERSION)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Deploy transformations
         uses: cognitedata/transformations-cli@main
         env:
             # Credentials to be used when running your transformations,
             # as referenced in your manifests:
-            COGNITE_CLIENT_ID: $CLI_CLIENT_ID
+            COGNITE_CLIENT_ID: ${{ env.CLI_CLIENT_ID }}
             COGNITE_CLIENT_SECRET: ${{ secrets.CLI_CLIENT_SECRET }}
+            VERSION: ${{ env.VERSION }}
         with:
             # Credentials used for deployment
             path: transformations  # Transformation manifest folder, relative to GITHUB_WORKSPACE
-            client-id: $CLI_CLIENT_ID
+            client-id: ${{ env.CLI_CLIENT_ID }}
             client-secret: ${{ secrets.CLI_CLIENT_SECRET }}
-            token-url: https://login.microsoftonline.com/$CLI_TENANT/oauth2/v2.0/token
+            token-url: https://login.microsoftonline.com/${{env.CLI_TENANT}}/oauth2/v2.0/token
             cdf-project-name: andershaf
             # If you need to provide multiple scopes, the format: "scope1 scope2 scope3"
             scopes: https://api.cognitedata.com/.default

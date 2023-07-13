@@ -19,6 +19,10 @@ jobs:
       - name: Signin
         run: |
           cdf signin $CLI_PROJECT --tenant=$CLI_TENANT --cluster=$CLI_CLUSTER --client-id=$CLI_CLIENT_ID --client-secret=${{ secrets.CLI_CLIENT_SECRET }}
+      - name: Load version
+        run: |
+          VERSION=$(cat VERSION)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Publish changes
         run: |
           cdf data-models publish --file=$file --external-id=$external_id --space=$space --version=$version
@@ -26,5 +30,5 @@ jobs:
           file: './datamodel.graphql'
           external_id: 'MovieDMCICD'
           space: 'MovieDMCICD'
-          version: '1'
+          version: ${{ env.VERSION }}
           
