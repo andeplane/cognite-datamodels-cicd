@@ -19,6 +19,11 @@ jobs:
       - name: Signin
         run: |
           cdf signin ${{ env.CLI_PROJECT }} --tenant=${{ env.CLI_TENANT }} --cluster=${{ env.CLI_CLUSTER }} --client-id=${{ env.CLI_CLIENT_ID }} --client-secret=${{ secrets.CLI_CLIENT_SECRET }}
+        env:
+          CLI_PROJECT: ${{ env.CLI_PROJECT }}
+          CLI_TENANT: ${{ env.CLI_TENANT }}
+          CLI_CLUSTER: ${{ env.CLI_CLUSTER }}
+          CLI_CLIENT_ID: ${{ env.CLI_CLIENT_ID }}
       - name: Load version
         run: |
           VERSION=$(cat VERSION)
